@@ -13,22 +13,23 @@ import MuiAlert from "@mui/material/Alert";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/Feather";
 import Skeleton from "@mui/material/Skeleton";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import { firestore, auth } from "../config";
 import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
 const ProductCard = ({ productId }) => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [isRed, setIsRed] = useState(false);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [uid, setUid] = useState(null);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [showSnackbar1, setShowSnackbar1] = useState(false);
-
-  const navigateProductDetails = () => {
-    console.log("productId is ", productId);
-    navigation.navigate("ProductDetails", { productId });
-  };
+  
+  // const navigateProductDetails = () => {
+  //   console.log("productId is ", productId);
+  //   navigation.navigate("ProductDetails", { productId });
+  // };
 
   const toggleHeart = async () => {
     try {
@@ -44,7 +45,7 @@ const ProductCard = ({ productId }) => {
       } else {
         // Document does not exist, add to Favourites
         await favDocRef.set({
-          productId: productId,
+          productId: id,
           uid: uid,
           productName: product.name,
           description: product.description,
@@ -393,7 +394,7 @@ const ProductCard = ({ productId }) => {
                 </Box>
               </View>
 
-              <Button
+              <TouchableOpacity
                 style={{
                   border: "2px black solid",
                   alignSelf: "flex-start",
@@ -403,11 +404,16 @@ const ProductCard = ({ productId }) => {
                   color: "black",
                   cursor: "pointer",
                 }}
-                onClick={navigateProductDetails}
+                 onPress={()=>router.push(
+                  {
+                    pathname:"ProductDetails/[ProductDetails]",
+                    params:{productId: productId,businessName:product.businessName}
+                  }
+                 )}
               >
                 <Text>VIEW </Text>
                 <Icon name="arrow-right" size={20} />
-              </Button>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

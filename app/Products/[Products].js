@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import {
   Container,
@@ -20,7 +21,8 @@ import {
   CardContent,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams,router } from "expo-router";
+//import { Link, router } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/Feather";
 import Skeleton from "@mui/material/Skeleton";
@@ -467,7 +469,7 @@ const Products = () => {
                       </View>
                     </Box>
                   </View>
-                  <Button
+                  <Pressable
                     style={{
                       border: "2px black solid",
                       alignSelf: "flex-start",
@@ -477,10 +479,22 @@ const Products = () => {
                       color: "black",
                       cursor: "pointer",
                     }}
+                    // onPress={()=>router.push(
+                    //   {
+                    //     pathname:"ProductDetails/[ProductDetails]",
+                    //     params:{productId: product.id}
+                    //   }
+                    //  )}
+                    // onPress={()=>router.push(
+                    //   {
+                    //     pathname:"ProductDetails/[ProductDetails]",
+                    //     params:{id: product.id}
+                    //   }
+                    //  )}
                     // onClick={() => navigateProductDetails(product.id)}
                   >
                     VIEW <Icon name="arrow-right" size={20} />
-                  </Button>
+                  </Pressable>
                 </View>
               </View>
             </Card>
