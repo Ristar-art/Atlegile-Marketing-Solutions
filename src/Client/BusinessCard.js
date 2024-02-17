@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, ScrollView, TouchableOpacity, Button } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Button, Pressable } from "react-native";
 import { firebase, firestore, auth } from "../config"; // Adjust the path based on your project structure
 import ProductCard from "../Global/Card";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Link, router } from "expo-router";
 export default function BusinessCard({ business }) {
   console.log(business);
   const scrollViewRef = useRef(null);
@@ -158,14 +159,47 @@ export default function BusinessCard({ business }) {
                 >
                   {business}
                 </Text>
-
+                {/* <Link href="/Poductdetails" asChild>
+                
+              
+                  <Text>View All</Text>
+                ]
+                </Link> */}
+                {/* <Link href="/Poductdetails" asChild>
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Products", { businessId: business })
-                  }
+                  // onPress={() =>
+                  //   navigation.navigate("Products", { businessId: business })
+                  // }
                 >
                   <Text>View All</Text>
                 </TouchableOpacity>
+                </Link> */}
+
+                {/* <Pressable
+                  href={{
+                    pathname: "/Products",
+                    params: { id: business },
+                  }}
+                >
+                  <Text>View All</Text>
+                </Pressable> */}
+
+                <Pressable
+                 onPress={()=>router.push(
+                  {
+                    pathname:"Products/[products]",
+                    params:{id: business}
+                  }
+                 )}
+                >
+                  <Text>View All</Text>
+                </Pressable>
+                {/*                 
+                <TouchableOpacity>
+      <Link routeName="Products" routeParams={{ businessId: business }}>
+        <Text>View All</Text>
+      </Link>
+    </TouchableOpacity> */}
               </View>
               <ScrollView
                 ref={scrollViewRef}
