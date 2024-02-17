@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import Plane from "../src/Global/images/plane.svg";
  import Lion from "../src/Global/images/bigger-lion.png";
 import FollowUs from "../src/Global/Header";
-//import Navbar from "../src/Global/Navbar";
+// import Navbar from "../src/Global/Navbar";
 import { Footer } from "../src/Global/Footer";
 import { yellow } from "@mui/material/colors";
 import { COLORS } from "../src/Global/Color";
