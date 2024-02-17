@@ -1,11 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { View,ScrollView } from "react-native";
 import { Container, Typography, Button } from "@mui/material";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
-// import FollowUs from "../../Global/Header";
+import FollowUs from "../src/Global/Header";
 // import Navbar from "../../Global/Navbar";
-// import { Footer } from "../../Global/Footer";
+import { Footer } from "../src/Global/Footer";
+// import { ScrollView } from "react-native-gesture-handler";
 
 const Reciept = () => {
   const navigation = useNavigation();
@@ -16,9 +17,10 @@ const Reciept = () => {
   };
 
   return (
-    <View>
-      {/* <FollowUs />
-      <Navbar /> */}
+    <View style={{flex:1}}>
+        
+        <FollowUs />
+      {/* <Navbar /> */}
       <Container fixed sx={{ height: "85vh" }}>
         <View
           style={{
@@ -78,7 +80,9 @@ const Reciept = () => {
           </Button>
         </View>
       </Container>
-      {/* <Footer /> */}
+      <Footer />
+       
+      
     </View>
   );
 };

@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-// import Plane from "../../Global/images/plane.svg";
-// import Lion from "../../Global/images/bigger-lion.png";
-// import FollowUs from "../../Global/Header";
-// import Navbar from "../../Global/Navbar";
-// import { Footer } from "../../Global/Footer";
-//import { yellow } from "@mui/material/colors";
-// import { COLORS } from "../../Global/Color";
+import Plane from "../src/Global/images/plane.svg";
+ import Lion from "../src/Global/images/bigger-lion.png";
+import FollowUs from "../src/Global/Header";
+//import Navbar from "../src/Global/Navbar";
+import { Footer } from "../src/Global/Footer";
+import { yellow } from "@mui/material/colors";
+import { COLORS } from "../src/Global/Color";
 import { useNavigation } from "@react-navigation/native";
 import { Video } from "expo-av";
 
@@ -18,8 +18,8 @@ export default function AboutUs() {
   return (
     <View style={{ Width: "100vw" }}>
       {/* <StatusBar style="auto" /> */}
-      {/* <FollowUs />
-      <Navbar /> */}
+      <FollowUs />
+      {/* <Navbar /> */}
       <View
         style={{
           //width: "100vw",
@@ -39,15 +39,15 @@ export default function AboutUs() {
           }}
         >
           <View>
-            {/* <Image
-              source={require("../../Global/images/logo.svg")}
+            <Image
+              source={require("../src/Global/images/logo.svg")}
               style={{ width: 120, height: 60, resizeMode: "contain" }}
-            /> */}
+            />
           </View>
           <View style={styles.aboutTextSection}>
             <Text
               style={{
-                // color: COLORS.darkBlue,
+                color: COLORS.darkBlue,
                 textAlign: "center",
                 fontWeight: "bold",
                 fontSize: "2rem",
@@ -92,7 +92,7 @@ export default function AboutUs() {
             >
               <Text
                 style={{
-                //   color: COLORS.darkBlue,
+                color: COLORS.darkBlue,
                   textAlign: "center",
                   fontWeight: "bold",
                   fontSize: "1.2rem",
@@ -119,7 +119,7 @@ export default function AboutUs() {
             >
               <Text
                 style={{
-                //   color: COLORS.darkBlue,
+                 color: COLORS.darkBlue,
                   textAlign: "center",
                   fontWeight: "bold",
                   fontSize: "1.2rem",
@@ -145,7 +145,7 @@ export default function AboutUs() {
             >
               <Text
                 style={{
-                //   color: COLORS.darkBlue,
+                  color: COLORS.darkBlue,
                   textAlign: "center",
                   fontWeight: "bold",
                   fontSize: "1.2rem",
@@ -199,7 +199,7 @@ export default function AboutUs() {
               onPlaybackStatusUpdate={setStatus}
             />
             {/* <Image
-            source={require("../../Global/images/plane.svg")}
+            source={require("../src/Global/images/plane.svg")}
             style={{
               minHeight: "70vh",
               minWidth: "100%",
@@ -246,7 +246,7 @@ export default function AboutUs() {
                     paddingHorizontal: 20,
                     paddingBottom: 5,
                     margin: 5,
-                    // backgroundColor: COLORS.darkBlue,
+                    backgroundColor: COLORS.darkBlue,
                     fontSize: "1.2rem",
                   }}
                 >
@@ -260,7 +260,7 @@ export default function AboutUs() {
                     paddingHorizontal: 20,
                     margin: 5,
                     paddingBottom: 5,
-                    // backgroundColor: COLORS.darkBlue,
+                    backgroundColor: COLORS.darkBlue,
                     fontSize: "1.2rem",
                   }}
                 >
@@ -274,7 +274,7 @@ export default function AboutUs() {
                     paddingHorizontal: 20,
                     margin: 5,
                     paddingBottom: 5,
-                    // backgroundColor: COLORS.darkBlue,
+                    backgroundColor: COLORS.darkBlue,
                     fontSize: "1.2rem",
                   }}
                 >
@@ -288,7 +288,7 @@ export default function AboutUs() {
                     paddingBottom: 5,
                     paddingHorizontal: 20,
                     margin: 5,
-                    // backgroundColor: COLORS.darkBlue,
+                     backgroundColor: COLORS.darkBlue,
                     fontSize: "1.2rem",
                   }}
                 >
@@ -337,7 +337,7 @@ export default function AboutUs() {
           <View style={styles.amsText}>
             <Text
               style={{
-                //  color: COLORS.darkBlue,
+                  color: COLORS.darkBlue,
                 textAlign: "center",
                 fontWeight: "bold",
                 fontSize: "2rem",
@@ -353,17 +353,17 @@ export default function AboutUs() {
         </View>
       </View>
 
-      {/* <Image
-        source={require("../../Global/images/big-lion.svg")}
+      <Image
+        source={require("../src/Global/images/big-lion.svg")}
         style={{
           minHeight: "99vh",
           minWidth: "100%",
           resizeMode: "contain",
           // backgroundColor: "red",
         }}
-      /> */}
+      />
 
-      {/* <Footer /> */}
+      <Footer />
     </View>
   );
 }
