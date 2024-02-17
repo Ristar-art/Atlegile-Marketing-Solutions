@@ -1,14 +1,14 @@
 import React from "react";
 import { View, Text, Image, StyleSheet,ScrollView } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import Plane from "../src/Global/images/plane.svg";
- import Lion from "../src/Global/images/bigger-lion.png";
-import FollowUs from "../src/Global/Header";
+// import { StatusBar } from "expo-status-bar";
+// import Plane from "../src/Global/images/plane.svg";
+//  import Lion from "../src/Global/images/bigger-lion.png";
+import FollowUs from "../../src/Global/Header";
 // import Navbar from "../src/Global/Navbar";
-import { Footer } from "../src/Global/Footer";
-import { yellow } from "@mui/material/colors";
-import { COLORS } from "../src/Global/Color";
-import { useNavigation } from "@react-navigation/native";
+import { Footer } from "../../src/Global/Footer";
+// import { yellow } from "@mui/material/colors";
+import { COLORS } from "../../src/Global/Color";
+// import { useNavigation } from "@react-navigation/native";
 import { Video } from "expo-av";
 
 export default function AboutUs() {
@@ -40,7 +40,7 @@ export default function AboutUs() {
         >
           <View>
             <Image
-              source={require("../src/Global/images/logo.svg")}
+              source={require("../../src/Global/images/logo.svg")}
               style={{ width: 120, height: 60, resizeMode: "contain" }}
             />
           </View>
@@ -354,7 +354,7 @@ export default function AboutUs() {
       </View>
 
       <Image
-        source={require("../src/Global/images/big-lion.svg")}
+        source={require("../../src/Global/images/big-lion.svg")}
         style={{
           minHeight: "99vh",
           minWidth: "100%",

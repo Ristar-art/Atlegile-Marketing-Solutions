@@ -10,15 +10,15 @@ import {
 } from "react-native";
 import { Container, Typography, Grid, Button } from "@mui/material";
 // import Navbar from "../src/Global/Navbar";
-import SearchBar from "../src/Global/SearchBar";
+import SearchBar from "../../src/Global/SearchBar";
 //import ProductCard from "../src/Global/Card";
-import FollowUs from "../src/Global/Header";
-import { Footer } from "../src/Global/Footer";
+import FollowUs from "../../src/Global/Header";
+import { Footer } from "../../src/Global/Footer";
 //import shop from "../../Global/images/svg_landing.svg";
 //import shop2 from "../../Global/images/svg_landing.svg";
-import { firebase, firestore, auth } from "../src/config";
+import { firebase, firestore, auth } from "../../src/config";
 // import { useNavigation } from "@react-navigation/native";
-import BusinessCard from "../src/Client/BusinessCard";
+import BusinessCard from "../../src/Client/BusinessCard";
 //import { AntDesign } from "@expo/vector-icons";
 // import {
 //   setDoc,

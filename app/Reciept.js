@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import FollowUs from "../src/Global/Header";
 // import Navbar from "../../Global/Navbar";
 import { Footer } from "../src/Global/Footer";
-// import { ScrollView } from "react-native-gesture-handler";
+
 
 const Reciept = () => {
   const navigation = useNavigation();
@@ -21,7 +21,7 @@ const Reciept = () => {
         
         <FollowUs />
       {/* <Navbar /> */}
-      <Container fixed sx={{ height: "85vh" }}>
+      <Container fixed sx={{ height: "100vh", marginBottom:10 }}>
         <View
           style={{
             height: "800px",
