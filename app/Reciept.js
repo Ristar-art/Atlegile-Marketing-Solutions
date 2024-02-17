@@ -17,7 +17,7 @@ const Reciept = () => {
   };
 
   return (
-    <View style={{flex:1}}>
+    <ScrollView style={{flex:1}}>
         
         <FollowUs />
       {/* <Navbar /> */}
@@ -81,9 +81,8 @@ const Reciept = () => {
         </View>
       </Container>
       <Footer />
-       
       
-    </View>
+    </ScrollView>
   );
 };
 

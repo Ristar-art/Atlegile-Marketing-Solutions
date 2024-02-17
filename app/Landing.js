@@ -10,14 +10,14 @@ import {
 } from "react-native";
 import { Container, Typography, Grid, Button } from "@mui/material";
 // import Navbar from "../src/Global/Navbar";
-//import SearchBar from "../src/Global/SearchBar";
+import SearchBar from "../src/Global/SearchBar";
 //import ProductCard from "../src/Global/Card";
 import FollowUs from "../src/Global/Header";
 import { Footer } from "../src/Global/Footer";
 //import shop from "../../Global/images/svg_landing.svg";
 //import shop2 from "../../Global/images/svg_landing.svg";
 import { firebase, firestore, auth } from "../src/config";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import BusinessCard from "../src/Client/BusinessCard";
 //import { AntDesign } from "@expo/vector-icons";
 // import {
@@ -35,7 +35,7 @@ import BusinessCard from "../src/Client/BusinessCard";
 // } from "firebase/firestore";
 
 const Landing = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [businesses, setBusinesses] = useState([]);
   const [products, setProducts] = useState([]);
   const scrollViewRef1 = useRef(null);
@@ -46,7 +46,7 @@ const Landing = () => {
   const [firebaseCollection, setFirebaseCollection] = useState(null);
 
   const navigatebusinessproduct = () => {
-    navigation.navigate("BusinessProducts");
+    // navigation.navigate("BusinessProducts");
   };
 
   useEffect(() => {
@@ -88,10 +88,11 @@ const Landing = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <FollowUs />
         {/* <Navbar /> */}
-        {/* <SearchBar /> */}
+        
+        <SearchBar />
         <container
           style={{
             alignItems: "center",
@@ -344,7 +345,7 @@ const Landing = () => {
           </Grid>
         </Grid>
         <Footer />
-      </View>
+      </ScrollView>
     </>
   );
 };

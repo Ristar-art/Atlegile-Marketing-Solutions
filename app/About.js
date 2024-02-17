@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet,ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Plane from "../src/Global/images/plane.svg";
  import Lion from "../src/Global/images/bigger-lion.png";
@@ -16,7 +16,7 @@ export default function AboutUs() {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   return (
-    <View style={{ Width: "100vw" }}>
+    <ScrollView style={{ Width: "100vw" }}>
       {/* <StatusBar style="auto" /> */}
       <FollowUs />
       {/* <Navbar /> */}
@@ -364,7 +364,7 @@ export default function AboutUs() {
       />
 
       <Footer />
-    </View>
+    </ScrollView>
   );
 }
 
