@@ -21,7 +21,7 @@ import {
   CardContent,
 } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import { useLocalSearchParams,router } from "expo-router";
+import { useLocalSearchParams,router ,useNavigation,useGlobalSearchParams} from "expo-router";
 //import { Link, router } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/Feather";
@@ -54,7 +54,7 @@ import {
 
 import { useRoute } from "@react-navigation/native";
 const Products = () => {
-  const { id } = useLocalSearchParams();
+  const { id } = useGlobalSearchParams();
   console.log("id is ", id);
   // const navigation = useNavigation();
   const [businesses, setBusinesses] = useState([]);
@@ -73,6 +73,11 @@ const Products = () => {
   const [uid, setUid] = useState(null);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [showSnackbar1, setShowSnackbar1] = useState(false);
+  const navigation = useNavigation();
+
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   const navigateProductDetails = (productId) => {
     // navigation.navigate("ProductDetails", { productId });

@@ -69,10 +69,10 @@ import firebaseConfig from "../../src/config";
 import { firebase, auth } from "../../src/config";
 
 // import Navbar from "../../Global/Navbar";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams,useGlobalSearchParams } from "expo-router";
 export default function ProductDetails() {
-  const navigation = useNavigation();
-const { productId } = useLocalSearchParams();
+  
+const { productId } = useGlobalSearchParams();
 
  console.log('my productId is', productId)
  const {businessName}= useLocalSearchParams();
@@ -93,6 +93,11 @@ const { productId } = useLocalSearchParams();
 
   const app = initializeApp(firebaseConfig);
   const firestore = getFirestore(app);
+  const navigation = useNavigation();
+
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   const handleChangeProduct = (relatedProductId) => {
     // Navigate to the new product's details page
