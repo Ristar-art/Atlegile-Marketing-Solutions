@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Image, Text, Modal, StyleSheet,ScrollView } from "react-native";
+import { View, TouchableOpacity, Image, Text, Modal, StyleSheet,ScrollView, Pressable } from "react-native";
 import { Typography, Button } from "@mui/material";
 import Icon from "react-native-vector-icons/Fontisto";
 import React, { useState, useEffect } from "react";
@@ -13,6 +13,7 @@ import { signOut } from "firebase/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, firestore } from "../../src/config";
+import { Link } from "expo-router";
 const UserProfile = () => {
   const navigation = useNavigation();
   const [userData, setUserData] = useState(null);
@@ -107,10 +108,10 @@ const UserProfile = () => {
     // alert('button clicked!')
   };
 
-  const handleFavourites = () => {
-    navigation.navigate("Favourites");
-    // alert('button clicked!')
-  };
+  // const handleFavourites = () => {
+  //   navigation.navigate("Favourites");
+  //   // alert('button clicked!')
+  // };
 
   return (
     <ScrollView style={styles.container}>
@@ -250,7 +251,7 @@ const UserProfile = () => {
               }}
             >
               <Icon name="stopwatch" size={18} style={{ marginRight: "5px" }} />
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   fontSize: 12,
                   color: "gray",
@@ -260,7 +261,12 @@ const UserProfile = () => {
                 onPress={handleFavourites}
               >
                 <Text>FAVOURITES </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+              <Link href="/Favourites/Favourites" asChild>
+      <Pressable>
+        <Text>FAVOURITES</Text>
+      </Pressable>
+    </Link>
             </View>
             <View
               style={{

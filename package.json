@@ -32,7 +32,8 @@
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-web": "~0.19.6",
-    "react-places-autocomplete": "^7.3.0"
+    "react-places-autocomplete": "^7.3.0",
+    "sweetalert2": "^11.10.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
