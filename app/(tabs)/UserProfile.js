@@ -214,7 +214,7 @@ const UserProfile = () => {
               }}
             >
               <Icon name="stopwatch" size={18} style={{ marginRight: "5px" }} />
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 style={{
                   fontSize: 12,
                   color: "gray",
@@ -224,7 +224,12 @@ const UserProfile = () => {
                 onPress={handleOrderHistoryNav}
               >
                 <Text>ORDER HISTORY</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
+              <Link href="/Cart/OrderHisrory" asChild>
+      <Pressable>
+        <Text>ORDER HISTORY</Text>
+      </Pressable>
+    </Link>
             </View>
             {showOrderHistory && (
               <View>
@@ -251,17 +256,7 @@ const UserProfile = () => {
               }}
             >
               <Icon name="stopwatch" size={18} style={{ marginRight: "5px" }} />
-              {/* <TouchableOpacity
-                style={{
-                  fontSize: 12,
-                  color: "gray",
-                  fontWeight: "bold",
-                  textDecoration: "none",
-                }}
-                onPress={handleFavourites}
-              >
-                <Text>FAVOURITES </Text>
-              </TouchableOpacity> */}
+              
               <Link href="/Favourites/Favourites" asChild>
       <Pressable>
         <Text>FAVOURITES</Text>
