@@ -3,7 +3,7 @@ import { Typography, Button } from "@mui/material";
 import Icon from "react-native-vector-icons/Fontisto";
 import React, { useState, useEffect } from "react";
 import FollowUs from "../src/Global/Header";
-// import Navbar from "../../Global/Navbar";
+import Navbar from "../src/Global/Navbar";
 import { Footer } from "../src/Global/Footer";
 import { useNavigation } from "expo-router";
 import sara from "../src/Global/images/Sara.png";
@@ -74,7 +74,7 @@ const UserProfile = () => {
   return (
     <ScrollView style={styles.container}>
       <FollowUs />
-      {/* <Navbar /> */}
+      <Navbar />
 
       <View
         style={{

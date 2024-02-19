@@ -11,7 +11,7 @@ import {
 import React, { useState, useRef, useEffect } from "react";
 
 import { Footer } from "../../src/Global/Footer";
-//   import Navbar from "../../Global/Navbar";
+  import Navbar from "../../src/Global/Navbar";
 import {
   Container,
   Typography,
@@ -309,7 +309,7 @@ const Favourites = ({ item }) => {
   return (
     <ScrollView style={{flex:1}}>
       <FollowUs />
-      {/* <Navbar /> */}
+      <Navbar />
       <View
         style={{
           display: "flex",

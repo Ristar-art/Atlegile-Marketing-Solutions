@@ -26,7 +26,7 @@ import { useLocalSearchParams,router ,useNavigation,useGlobalSearchParams} from 
 import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/Feather";
 import Skeleton from "@mui/material/Skeleton";
-//import Navbar from "../../Global/Navbar";
+import Navbar from "../../src/Global/Navbar";
 import SearchBar from "../../src/Global/SearchBar";
 //import ProductCard from "../../Global/Card";
 import FollowUs from "../../src/Global/Header";
@@ -224,7 +224,7 @@ const Products = () => {
     <>
       <ScrollView style={{ backgroundColor: "white" }}>
         <FollowUs />
-        {/* <Navbar /> */}
+        <Navbar />
         <SearchBar />
         <Box
           sx={{

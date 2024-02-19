@@ -68,8 +68,9 @@ import {
 import firebaseConfig from "../../src/config";
 import { firebase, auth } from "../../src/config";
 
-// import Navbar from "../../Global/Navbar";
+import Navbar from "../../src/Global/Navbar";
 import { useLocalSearchParams,useGlobalSearchParams } from "expo-router";
+import FollowUs from "../../src/Global/Header";
 export default function ProductDetails() {
   
 const { productId } = useGlobalSearchParams();
@@ -448,9 +449,10 @@ const { productId } = useGlobalSearchParams();
   };
 
   return (
-    <>
-      {/* <Navbar /> */}
-      <Box sx={{ backgroundColor: "white", height: "100%", overflowY: "auto" }}>
+    <ScrollView style={{backgroundColor: "white"}}>
+    <FollowUs/>
+      <Navbar />
+      <Box sx={{ height: "100%", overflowY: "auto" }}>
         <Container maxWidth="md">
           <Box sx={{ pl: 2, pb: 2, backgroundColor: "white" }}>
             <Breadcrumbs>
@@ -1057,6 +1059,6 @@ const { productId } = useGlobalSearchParams();
           </Box>
         </Container>
       </Box>
-    </>
+    </ScrollView>
   );
 }

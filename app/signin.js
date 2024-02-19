@@ -8,19 +8,20 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Pressable
+  Pressable,
 } from "react-native";
 import { Link, useNavigation } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import CircularProgress from "@mui/material/CircularProgress"; // This import might cause an issue in a React Native project. Make sure you're using a proper CircularProgress component for React Native.
 import { firebase } from "../src/config"; // Assuming firebase import is correct
-import { router } from 'expo-router';
+import { router } from "expo-router";
+
 const Signin = () => {
   const navigation = useNavigation(); // React Navigation hook for navigation
   const [email, setEmail] = useState(""); // State variable for email input
   const [password, setPassword] = useState(""); // State variable for password input
   const [loading, setLoading] = useState(false); // State variable for loading indicator
-  const window = Dimensions.get('window'); // Getting window dimensions
+  const window = Dimensions.get("window"); // Getting window dimensions
   React.useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -39,8 +40,7 @@ const Signin = () => {
         .signInWithEmailAndPassword(email, password);
 
       if (userCredential.user) {
-       
-        router.replace("/") // Navigate to Landing screen upon successful sign-in
+        router.replace("/"); // Navigate to Landing screen upon successful sign-in
       }
     } catch (error) {
       console.error("Error signing in:", error.message);
@@ -59,10 +59,6 @@ const Signin = () => {
     }
   };
 
-  const handleShop = () => {
-    navigation.navigate("Landing"); // Navigate to Landing screen when user wants to shop
-  };
-
   // Calculate container width and height dynamically
   const containerWidth = window.width > 400 ? 400 : window.width * 0.9;
   const containerHeight = window.height > 600 ? 600 : window.height * 0.9;
@@ -70,9 +66,11 @@ const Signin = () => {
   return (
     <ImageBackground
       source={require("../src/Global/images/Reed.jpg")} // Background image
-      style={styles.background}>
-      <View style={{...styles.container, width: containerWidth, height: "95%"}}>
-
+      style={styles.background}
+    >
+      <View
+        style={{ ...styles.container, width: containerWidth, height: "95%" }}
+      >
         {/* Logo image container */}
         <View style={{}}>
           <Image
@@ -82,17 +80,31 @@ const Signin = () => {
         </View>
 
         {/* Sign-in text container */}
-        <View style={{ width: "110%", flexDirection: "row", justifyContent: "space-around" }}>
+        <View
+          style={{
+            width: "110%",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
+        >
           <Text style={styles.title}>SIGN IN </Text>
 
           {/* Insert arrow logo */}
           <Link href="/" asChild>
-                    <Pressable>
-                    <Text style={{ fontSize: 14, marginBottom: -20 ,fontWeight: "500",}}>
-              SHOP <AntDesign style={styles.arrow} name="right" size={20} color="#072840" />
-            </Text>
-                    </Pressable>
-                  </Link>
+            <Pressable>
+              <Text
+                style={{ fontSize: 14, marginBottom: -20, fontWeight: "500" }}
+              >
+                SHOP{" "}
+                <AntDesign
+                  style={styles.arrow}
+                  name="right"
+                  size={20}
+                  color="#072840"
+                />
+              </Text>
+            </Pressable>
+          </Link>
           {/* <TouchableOpacity onPress={handleShop}>
             <Text style={{ fontSize: 14, marginBottom: -20 ,fontWeight: "500",}}>
               SHOP <AntDesign style={styles.arrow} name="right" size={20} color="#072840" />
@@ -117,17 +129,18 @@ const Signin = () => {
             secureTextEntry={true}
           />
         </View>
-        <View style= {{width:"70%",paddingLeft:2}}>
+        <View style={{ width: "70%", paddingLeft: 2 }}>
           <Text
             style={{
               position: "relative",
               left: 10,
               marginVertical: 10,
               cursor: "pointer",
-              alignSelf:'flex-end',
+              alignSelf: "flex-end",
               fontWeight: "500",
               color: "#072840",
-            }}>
+            }}
+          >
             FORGOT PASSWORD?
           </Text>
         </View>
@@ -140,26 +153,28 @@ const Signin = () => {
             <Text style={styles.buttonText}>SIGN IN</Text> // Sign-in text
           )}
         </TouchableOpacity>
-        <View style= {{width:"70%"}}>
-          <TouchableOpacity
-          onPress={()=> navigation.navigate('SignUp')}
+        <View style={{ width: "70%" }}>
+          <Link
             style={{
               position: "relative",
               left: 10,
               marginVertical: 10,
               cursor: "pointer",
-              alignSelf:'center',
+              alignSelf: "center",
               fontWeight: "500",
               color: "#072840",
-            }}>
-              
+            }}
+            href="/signup"
+          >
+            {" "}
             DON'T HAVE AN ACCOUNT?
-          </TouchableOpacity>
+          </Link>
         </View>
         {/* Google sign-in button */}
         <TouchableOpacity onPress={handleGoogleSignIn}>
           <Text style={styles.linkText1}>
-            <AntDesign name="google" size={15} color="red" /> SIGN UP WITH GOOGLE
+            <AntDesign name="google" size={15} color="red" /> SIGN UP WITH
+            GOOGLE
           </Text>
         </TouchableOpacity>
       </View>
@@ -175,11 +190,11 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "#FFFFFF",
-  //  padding: 20,
+    //  padding: 20,
     // borderRadius: 10,
-   // width: "30%",
+    // width: "30%",
     margin: "3%",
-   // height: "95vh",
+    // height: "95vh",
     alignItems: "center",
     justifyContent: "center",
   },
