@@ -4,7 +4,7 @@ import { Button, Toolbar, Typography, Box, Badge } from "@mui/material";
 import { View, Image, TouchableOpacity, Dimensions } from "react-native";
 //import Icon from "react-native-vector-icons/FontAwesome5";
 import { auth, firestore } from "../config";
-import { ShoppingCart } from "@mui/icons-material";
+import Icon from "react-native-vector-icons/Entypo";
 
 // ... (previous imports)
 
@@ -129,7 +129,11 @@ const Navbar = () => {
                     color="primary"
                     style={{ margin: "0px 15px" }}
                   >
-                    <ShoppingCart color="action" style={{ color: "black" }} />
+                    <Icon
+                            name="shopping-cart"
+                            size={20}
+                            color="#252B42"
+                          />
                   </Badge>
                 </Box>
               </TouchableOpacity>

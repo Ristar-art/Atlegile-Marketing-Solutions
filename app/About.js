@@ -1,5 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, Image, StyleSheet,ScrollView,Dimensions,TouchableOpacity, Pressable} from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 // import { StatusBar } from "expo-status-bar";
 // import Plane from "../src/Global/images/plane.svg";
 //  import Lion from "../src/Global/images/bigger-lion.png";
@@ -12,13 +21,14 @@ import { COLORS } from "../src/Global/Color";
 import { Video } from "expo-av";
 import { Link, useNavigation } from "expo-router";
 import { firebase, firestore, auth } from "../src/config";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/Entypo";
 import {
   Toolbar,
   Container,
   Typography,
   Grid,
   Button,
+  Box,
   Badge,
 } from "@mui/material";
 export default function AboutUs() {
@@ -96,190 +106,196 @@ export default function AboutUs() {
   }, [navigation]);
 
   return (
-    <ScrollView style={{ Width: "100vw" ,backgroundColor:'white'}}>
+    <ScrollView style={{ Width: "100vw", backgroundColor: "white" }}>
       {/* <StatusBar style="auto" /> */}
       <FollowUs />
       <Toolbar
-          sx={{
-            color: "#252B42",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+        sx={{
+          color: "#252B42",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <TouchableOpacity
+        //  onPress={() => navigation.navigate("Landing")}
         >
-          <TouchableOpacity
-          //  onPress={() => navigation.navigate("Landing")}
-          >
-            <Image
-              source={imageLogo}
-              style={{ width: 120, height: 60, resizeMode: "contain" }}
+          <Image
+            source={imageLogo}
+            style={{ width: 120, height: 60, resizeMode: "contain" }}
+          />
+        </TouchableOpacity>
+        {width < 600 ? (
+          <TouchableOpacity onPress={toggleMenu}>
+            <Icon
+              name={showMenu ? "times" : "bars"}
+              size={20}
+              color="#252B42"
             />
           </TouchableOpacity>
-          {width < 600 ? (
-            <TouchableOpacity onPress={toggleMenu}>
-              <Icon
-                name={showMenu ? "times" : "bars"}
-                size={20}
-                color="#252B42"
-              />
-            </TouchableOpacity>
-          ) : (
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              {userData ? (
-                <>
-                  <Link href="/" asChild>
-                    <Pressable>
-                      <Button color="inherit">Shop</Button>
-                    </Pressable>
-                  </Link>
+        ) : (
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            {userData ? (
+              <>
+                <Link href="/" asChild>
+                  <Pressable>
+                    <Button color="inherit">Shop</Button>
+                  </Pressable>
+                </Link>
 
-                  <Link href="/About" asChild>
-                    <Pressable>
-                      <Button color="inherit">About Us</Button>
-                    </Pressable>
-                  </Link>
+                <Link href="/About" asChild>
+                  <Pressable>
+                    <Button color="inherit">About Us</Button>
+                  </Pressable>
+                </Link>
 
-                  <TouchableOpacity
-                  // onPress={() => navigateAndCloseMenu("DateSelectionAndCheckout")}
-                  >
-                    <Box>
-                      <Badge
-                        badgeContent={cartCount}
-                        color="primary"
-                        style={{ margin: "0px 15px" }}
-                      >
-                        <ShoppingCart
+                <Link href="/DateSelectionAndCheckout" asChild>
+                    <Pressable>
+                      <Box>
+                        <Badge
+                          badgeContent={cartCount}
+                          color="primary"
+                          style={{ margin: "0px 15px" }}
+                        >
+                          <Icon
+                            name="shopping-cart"
+                            size={20}
+                            color="#252B42"
+                          />
+                          {/* <ShoppingCart
                           color="action"
                           style={{ color: "black" }}
-                        />
-                      </Badge>
-                    </Box>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    // onPress={() => navigateAndCloseMenu("UserProfile")}
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      marginLeft: 10,
-                    }}
-                  >
-                    <View
+                        /> */}
+                        </Badge>
+                      </Box>
+                    </Pressable>
+                  </Link>
+                  <Link href="/UserProfile" asChild>
+                    <Pressable
+                      // onPress={() => navigateAndCloseMenu("UserProfile")}
                       style={{
-                        width: 40,
-                        height: 40,
-                        backgroundColor: "gray",
-                        borderRadius: "8%",
+                        display: "flex",
+                        flexDirection: "row",
                         alignItems: "center",
-                        justifyContent: "center",
+                        marginLeft: 10,
                       }}
                     >
-                      <Typography
+                      <View
                         style={{
-                          fontSize: 16,
-                          color: "white",
-                          padding: 10,
+                          width: 40,
+                          height: 40,
+                          backgroundColor: "gray",
+                          borderRadius: "8%",
+                          alignItems: "center",
+                          justifyContent: "center",
                         }}
                       >
-                        AS
-                      </Typography>
-                    </View>
-                    <View style={{ marginLeft: 10 }}>
-                      <Typography variant="subtitle1">
-                        Welcome, {userData.name}
-                      </Typography>
-                      <Typography style={{ fontSize: 12 }}>
-                        {userData.username}
-                      </Typography>
-                    </View>
-                  </TouchableOpacity>
-                </>
-              ) : (
-                <>
-                  <Link href="/" asChild>
-                    <Pressable>
-                      <Button color="inherit">Shop</Button>
+                        <Typography
+                          style={{
+                            fontSize: 16,
+                            color: "white",
+                            padding: 10,
+                          }}
+                        >
+                          AS
+                        </Typography>
+                      </View>
+                      <View style={{ marginLeft: 10 }}>
+                        <Typography variant="subtitle1">
+                          Welcome, {userData.name}
+                        </Typography>
+                        <Typography style={{ fontSize: 12 }}>
+                          {userData.username}
+                        </Typography>
+                      </View>
                     </Pressable>
                   </Link>
-                  <Link href="/About" asChild>
-                    <Pressable color="black">
-                      <Button color="inherit">About Us</Button>
-                    </Pressable>
-                  </Link>
-                  <Link href="/singin" asChild>
-                    <Pressable>
-                      <Button color="inherit">Sign in</Button>
-                    </Pressable>
-                  </Link>
-                  <Link href="/sihnup" asChild>
-                    <Pressable>
-                      <Button color="inherit">Sign Up</Button>
-                    </Pressable>
-                  </Link>
-                </>
-              )}
-            </View>
-          )}
-          {showMenu && width < 600 && (
-            <View
-              style={{
-                position: "absolute",
-                top: 60,
-                right: 10,
-                backgroundColor: "#fff",
-                padding: 10,
-                borderRadius: 5,
-                zIndex: 999,
-              }}
-            >
-              <Link href="/" asChild>
-                <Pressable>
-                  <Button color="inherit">Shop</Button>
-                </Pressable>
-              </Link>
-              <Link href="/About" asChild>
-                <Pressable color="black">
-                  <Button color="inherit">About Us</Button>
-                </Pressable>
-              </Link>
-              {userData ? (
-                <>
-                  <TouchableOpacity
-                  // onPress={() => navigateAndCloseMenu("UserProfile")}
-                  >
-                    <Button color="inherit">Profile</Button>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                  // onPress={() => navigateAndCloseMenu("DateSelectionAndCheckout")}
-                  >
-                    <Button color="inherit">Cart</Button>
-                  </TouchableOpacity>
-                </>
-              ) : (
-                <>
-                  <Link href="/singin" asChild>
-                    <Pressable>
-                      <Button color="inherit">Sign in</Button>
-                    </Pressable>
-                  </Link>
-                  <Link href="/sihnup" asChild>
-                    <Pressable>
-                      <Button color="inherit">Sign Up</Button>
-                    </Pressable>
-                  </Link>
-                </>
-              )}
-            </View>
-          )}
-        </Toolbar>
+              </>
+            ) : (
+              <>
+                <Link href="/" asChild>
+                  <Pressable>
+                    <Button color="inherit">Shop</Button>
+                  </Pressable>
+                </Link>
+                <Link href="/About" asChild>
+                  <Pressable color="black">
+                    <Button color="inherit">About Us</Button>
+                  </Pressable>
+                </Link>
+                <Link href="/singin" asChild>
+                  <Pressable>
+                    <Button color="inherit">Sign in</Button>
+                  </Pressable>
+                </Link>
+                <Link href="/sihnup" asChild>
+                  <Pressable>
+                    <Button color="inherit">Sign Up</Button>
+                  </Pressable>
+                </Link>
+              </>
+            )}
+          </View>
+        )}
+        {showMenu && width < 600 && (
+          <View
+            style={{
+              position: "absolute",
+              top: 60,
+              right: 10,
+              backgroundColor: "#fff",
+              padding: 10,
+              borderRadius: 5,
+              zIndex: 999,
+            }}
+          >
+            <Link href="/" asChild>
+              <Pressable>
+                <Button color="inherit">Shop</Button>
+              </Pressable>
+            </Link>
+            <Link href="/About" asChild>
+              <Pressable color="black">
+                <Button color="inherit">About Us</Button>
+              </Pressable>
+            </Link>
+            {userData ? (
+              <>
+                <TouchableOpacity
+                // onPress={() => navigateAndCloseMenu("UserProfile")}
+                >
+                  <Button color="inherit">Profile</Button>
+                </TouchableOpacity>
+                <TouchableOpacity
+                // onPress={() => navigateAndCloseMenu("DateSelectionAndCheckout")}
+                >
+                  <Button color="inherit">Cart</Button>
+                </TouchableOpacity>
+              </>
+            ) : (
+              <>
+                <Link href="/singin" asChild>
+                  <Pressable>
+                    <Button color="inherit">Sign in</Button>
+                  </Pressable>
+                </Link>
+                <Link href="/sihnup" asChild>
+                  <Pressable>
+                    <Button color="inherit">Sign Up</Button>
+                  </Pressable>
+                </Link>
+              </>
+            )}
+          </View>
+        )}
+      </Toolbar>
       {/* <Navbar /> */}
       <View
         style={{
@@ -353,7 +369,7 @@ export default function AboutUs() {
             >
               <Text
                 style={{
-                color: COLORS.darkBlue,
+                  color: COLORS.darkBlue,
                   textAlign: "center",
                   fontWeight: "bold",
                   fontSize: "1.2rem",
@@ -380,7 +396,7 @@ export default function AboutUs() {
             >
               <Text
                 style={{
-                 color: COLORS.darkBlue,
+                  color: COLORS.darkBlue,
                   textAlign: "center",
                   fontWeight: "bold",
                   fontSize: "1.2rem",
@@ -441,7 +457,7 @@ export default function AboutUs() {
               width: "80%",
               // backgroundColor: "red",
               display: "flex",
-              justifyContent:"center"
+              justifyContent: "center",
             }}
           >
             <Video
@@ -449,7 +465,7 @@ export default function AboutUs() {
               style={{
                 height: "50vh",
                 width: "100%",
-                alignSelf: "center"
+                alignSelf: "center",
               }}
               source={{
                 uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
@@ -467,7 +483,7 @@ export default function AboutUs() {
               resizeMode: "contain",
             }}
           /> */}
-            <Text style={{  alignSelf: "flex-start" }}>
+            <Text style={{ alignSelf: "flex-start" }}>
               Business Research and Youth Development Project
             </Text>
           </View>
@@ -549,7 +565,7 @@ export default function AboutUs() {
                     paddingBottom: 5,
                     paddingHorizontal: 20,
                     margin: 5,
-                     backgroundColor: COLORS.darkBlue,
+                    backgroundColor: COLORS.darkBlue,
                     fontSize: "1.2rem",
                   }}
                 >
@@ -598,7 +614,7 @@ export default function AboutUs() {
           <View style={styles.amsText}>
             <Text
               style={{
-                  color: COLORS.darkBlue,
+                color: COLORS.darkBlue,
                 textAlign: "center",
                 fontWeight: "bold",
                 fontSize: "2rem",

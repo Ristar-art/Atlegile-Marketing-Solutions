@@ -29,6 +29,9 @@ import {
   Button,
   Badge,
 } from "@mui/material";
+// import { ShoppingCart } from "@mui/icons-material";
+import Icon from "react-native-vector-icons/Entypo";
+
 //  import Navbar from "../src/Global/Navbar";
 import SearchBar from "../src/Global/SearchBar";
 //import ProductCard from "../src/Global/Card";
@@ -55,7 +58,7 @@ import BusinessCard from "../src/Client/BusinessCard";
 // } from "firebase/firestore";
 
 import { Box } from "@mui/material";
-import Icon from "react-native-vector-icons/FontAwesome5";
+// import Icon from "react-native-vector-icons/FontAwesome5";
 import Icon2 from "react-native-vector-icons/Feather";
 import Icon3 from "react-native-vector-icons/EvilIcons";
 import { useNavigation } from "expo-router";
@@ -357,62 +360,67 @@ const Landing = () => {
                       <Button color="inherit">About Us</Button>
                     </Pressable>
                   </Link>
-
-                  <TouchableOpacity
-                  // onPress={() => navigateAndCloseMenu("DateSelectionAndCheckout")}
-                  >
-                    <Box>
-                      <Badge
-                        badgeContent={cartCount}
-                        color="primary"
-                        style={{ margin: "0px 15px" }}
-                      >
-                        <ShoppingCart
+                  <Link href="/DateSelectionAndCheckout" asChild>
+                    <Pressable>
+                      <Box>
+                        <Badge
+                          badgeContent={cartCount}
+                          color="primary"
+                          style={{ margin: "0px 15px" }}
+                        >
+                          <Icon
+                            name="shopping-cart"
+                            size={20}
+                            color="#252B42"
+                          />
+                          {/* <ShoppingCart
                           color="action"
                           style={{ color: "black" }}
-                        />
-                      </Badge>
-                    </Box>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    // onPress={() => navigateAndCloseMenu("UserProfile")}
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      marginLeft: 10,
-                    }}
-                  >
-                    <View
+                        /> */}
+                        </Badge>
+                      </Box>
+                    </Pressable>
+                  </Link>
+                  <Link href="/UserProfile" asChild>
+                    <Pressable
+                      // onPress={() => navigateAndCloseMenu("UserProfile")}
                       style={{
-                        width: 40,
-                        height: 40,
-                        backgroundColor: "gray",
-                        borderRadius: "8%",
+                        display: "flex",
+                        flexDirection: "row",
                         alignItems: "center",
-                        justifyContent: "center",
+                        marginLeft: 10,
                       }}
                     >
-                      <Typography
+                      <View
                         style={{
-                          fontSize: 16,
-                          color: "white",
-                          padding: 10,
+                          width: 40,
+                          height: 40,
+                          backgroundColor: "gray",
+                          borderRadius: "8%",
+                          alignItems: "center",
+                          justifyContent: "center",
                         }}
                       >
-                        AS
-                      </Typography>
-                    </View>
-                    <View style={{ marginLeft: 10 }}>
-                      <Typography variant="subtitle1">
-                        Welcome, {userData.name}
-                      </Typography>
-                      <Typography style={{ fontSize: 12 }}>
-                        {userData.username}
-                      </Typography>
-                    </View>
-                  </TouchableOpacity>
+                        <Typography
+                          style={{
+                            fontSize: 16,
+                            color: "white",
+                            padding: 10,
+                          }}
+                        >
+                          AS
+                        </Typography>
+                      </View>
+                      <View style={{ marginLeft: 10 }}>
+                        <Typography variant="subtitle1">
+                          Welcome, {userData.name}
+                        </Typography>
+                        <Typography style={{ fontSize: 12 }}>
+                          {userData.username}
+                        </Typography>
+                      </View>
+                    </Pressable>
+                  </Link>
                 </>
               ) : (
                 <>
@@ -426,12 +434,12 @@ const Landing = () => {
                       <Button color="inherit">About Us</Button>
                     </Pressable>
                   </Link>
-                  <Link href="/singin" asChild>
+                  <Link href="/signin" asChild>
                     <Pressable>
                       <Button color="inherit">Sign in</Button>
                     </Pressable>
                   </Link>
-                  <Link href="/sihnup" asChild>
+                  <Link href="/signup" asChild>
                     <Pressable>
                       <Button color="inherit">Sign Up</Button>
                     </Pressable>
@@ -477,12 +485,12 @@ const Landing = () => {
                 </>
               ) : (
                 <>
-                  <Link href="/singin" asChild>
+                  <Link href="/signin" asChild>
                     <Pressable>
                       <Button color="inherit">Sign in</Button>
                     </Pressable>
                   </Link>
-                  <Link href="/sihnup" asChild>
+                  <Link href="/signup" asChild>
                     <Pressable>
                       <Button color="inherit">Sign Up</Button>
                     </Pressable>

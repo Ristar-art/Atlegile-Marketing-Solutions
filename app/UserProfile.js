@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import FollowUs from "../src/Global/Header";
 // import Navbar from "../../Global/Navbar";
 import { Footer } from "../src/Global/Footer";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
 import sara from "../src/Global/images/Sara.png";
 import { firebase } from "../src/config";
 import { signOut } from "firebase/auth";
@@ -21,6 +21,10 @@ const UserProfile = () => {
   const [showOrderHistory, setShowOrderHistory] = useState(true);
   const [user, setUser] = useState(null);
 
+
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -56,49 +60,7 @@ const UserProfile = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       // Assuming you have the user's UID (replace 'userId' with the actual UID)
-  //       const userId = "dGHFGyde9e37r084rdP7";
-  //       const userRef = firebase.firestore().collection("Users").doc(userId);
-  //       const doc = await userRef.get();
-
-  //       if (doc.exists) {
-  //         setUserData(doc.data());
-  //       } else {
-  //         console.log("No such document!");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-
-  //   const fetchOrderHistory = async () => {
-  //     try {
-  //       // Assuming you have the user's UID (replace 'userId' with the actual UID)
-  //       const userId2 = "YI6BJyHCjgObep37vdDr";
-  //       const orderHistoryRef = firebase
-  //         .firestore()
-  //         .collection("OrderHistory")
-  //         .where("userId", "==", userId2);
-  //       const querySnapshot = await orderHistoryRef.get();
-
-  //       const orders = [];
-  //       querySnapshot.forEach((doc) => {
-  //         orders.push(doc.data());
-  //       });
-
-  //       setOrderHistory(orders);
-  //     } catch (error) {
-  //       console.error("Error fetching order history:", error);
-  //     }
-  //   };
-
-  //   fetchUserData();
-  //   fetchOrderHistory();
-  // }, []);
-
+ 
   const handleOrderHistoryNav = () => {
     navigation.navigate("OrderHistory");
   };
@@ -108,11 +70,7 @@ const UserProfile = () => {
     // alert('button clicked!')
   };
 
-  // const handleFavourites = () => {
-  //   navigation.navigate("Favourites");
-  //   // alert('button clicked!')
-  // };
-
+ 
   return (
     <ScrollView style={styles.container}>
       <FollowUs />
