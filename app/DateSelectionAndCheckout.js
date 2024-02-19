@@ -18,12 +18,12 @@ import {
   TextField,
 } from "@mui/material";
 import { useNavigation } from "@react-navigation/native";
-import FollowUs from "../../src/Global/Header";
+import FollowUs from "../src/Global/Header";
 // import Navbar from "../../Global/Navbar";
-import { Footer } from "../../src/Global/Footer";
+import { Footer } from "../src/Global/Footer";
 import axios from "axios";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { firestore } from "../../src/config";
+import { firestore } from "../src/config";
 
 import {
   collection,
@@ -36,7 +36,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 
-import { auth } from "../../src/config";
+import { auth } from "../src/config";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,

@@ -1,11 +1,15 @@
-import { Stack } from "expo-router"
+import { Stack } from 'expo-router/stack';
 
-const stackLaout = ()=>    {
-    return(
-        <Stack>
-           <Stack.Screen name="(tabs)" options={{headerShown:false}}/> 
-            
-        </Stack>
-    )
+export default function Layout() {
+  return (<Stack
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "#252b42",
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}
+  />);
 }
-export default stackLaout;

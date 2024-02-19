@@ -2,17 +2,17 @@ import { View, TouchableOpacity, Image, Text, Modal, StyleSheet,ScrollView, Pres
 import { Typography, Button } from "@mui/material";
 import Icon from "react-native-vector-icons/Fontisto";
 import React, { useState, useEffect } from "react";
-import FollowUs from "../../src/Global/Header";
+import FollowUs from "../src/Global/Header";
 // import Navbar from "../../Global/Navbar";
-import { Footer } from "../../src/Global/Footer";
+import { Footer } from "../src/Global/Footer";
 import { useNavigation } from "@react-navigation/native";
-import sara from "../../src/Global/images/Sara.png";
-import { firebase } from "../../src/config";
+import sara from "../src/Global/images/Sara.png";
+import { firebase } from "../src/config";
 import { signOut } from "firebase/auth";
 // import { auth } from "react-native-firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, firestore } from "../../src/config";
+import { auth, firestore } from "../src/config";
 import { Link } from "expo-router";
 const UserProfile = () => {
   const navigation = useNavigation();

@@ -1,24 +1,285 @@
-import React from "react";
-import { View, Text, Image, StyleSheet,ScrollView } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+import { View, Text, Image, StyleSheet,ScrollView,Dimensions,TouchableOpacity, Pressable} from "react-native";
 // import { StatusBar } from "expo-status-bar";
 // import Plane from "../src/Global/images/plane.svg";
 //  import Lion from "../src/Global/images/bigger-lion.png";
-import FollowUs from "../../src/Global/Header";
+import FollowUs from "../src/Global/Header";
 // import Navbar from "../src/Global/Navbar";
-import { Footer } from "../../src/Global/Footer";
+import { Footer } from "../src/Global/Footer";
 // import { yellow } from "@mui/material/colors";
-import { COLORS } from "../../src/Global/Color";
+import { COLORS } from "../src/Global/Color";
 // import { useNavigation } from "@react-navigation/native";
 import { Video } from "expo-av";
-
+import { Link, useNavigation } from "expo-router";
+import { firebase, firestore, auth } from "../src/config";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import {
+  Toolbar,
+  Container,
+  Typography,
+  Grid,
+  Button,
+  Badge,
+} from "@mui/material";
 export default function AboutUs() {
   const amsArr = [];
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
+  const navigation = useNavigation();
+  const imageLogo = require("../assets/logo.png");
+  const [userData, setUserData] = useState(null);
+  const [cartCount, setCartCount] = useState(2);
+  const [showMenu, setShowMenu] = useState(false);
+  const [width, setWidth] = useState(Dimensions.get("window").width);
+  // const imageLogo = require("../../assets/logo.png");
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const navigateAndCloseMenu = (screen) => {
+    console.log("screen is ", screen);
+    // navigation.navigate(screen);
+    setShowMenu(false);
+  };
+  useEffect(() => {
+    const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const cartCollectionRef = firestore
+          .collection("Cart")
+          .where("uid", "==", user.uid);
+
+        const unsubscribeCartSnapshot = cartCollectionRef.onSnapshot(
+          (snapshot) => {
+            const itemCount = snapshot.docs.length;
+            setCartCount(itemCount);
+          }
+        );
+
+        const userDocRef = firestore.collection("Users").doc(user.uid);
+        const unsubscribeSnapshot = userDocRef.onSnapshot((doc) => {
+          if (doc.exists) {
+            setUserData(doc.data());
+          } else {
+            console.error("User data not found");
+          }
+        });
+
+        return () => {
+          unsubscribeCartSnapshot();
+          unsubscribeSnapshot();
+        };
+      } else {
+        setUserData(null);
+        setCartCount(0); // Reset cart count when the user is not authenticated
+      }
+    });
+
+    return () => {
+      unsubscribeAuth();
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleDimensionsChange = ({ window }) => {
+      setWidth(window.width);
+    };
+
+    Dimensions.addEventListener("change", handleDimensionsChange);
+
+    return () => {
+      Dimensions.removeEventListener("change", handleDimensionsChange);
+    };
+  }, []);
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   return (
-    <ScrollView style={{ Width: "100vw" }}>
+    <ScrollView style={{ Width: "100vw" ,backgroundColor:'white'}}>
       {/* <StatusBar style="auto" /> */}
       <FollowUs />
+      <Toolbar
+          sx={{
+            color: "#252B42",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity
+          //  onPress={() => navigation.navigate("Landing")}
+          >
+            <Image
+              source={imageLogo}
+              style={{ width: 120, height: 60, resizeMode: "contain" }}
+            />
+          </TouchableOpacity>
+          {width < 600 ? (
+            <TouchableOpacity onPress={toggleMenu}>
+              <Icon
+                name={showMenu ? "times" : "bars"}
+                size={20}
+                color="#252B42"
+              />
+            </TouchableOpacity>
+          ) : (
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              {userData ? (
+                <>
+                  <Link href="/" asChild>
+                    <Pressable>
+                      <Button color="inherit">Shop</Button>
+                    </Pressable>
+                  </Link>
+
+                  <Link href="/About" asChild>
+                    <Pressable>
+                      <Button color="inherit">About Us</Button>
+                    </Pressable>
+                  </Link>
+
+                  <TouchableOpacity
+                  // onPress={() => navigateAndCloseMenu("DateSelectionAndCheckout")}
+                  >
+                    <Box>
+                      <Badge
+                        badgeContent={cartCount}
+                        color="primary"
+                        style={{ margin: "0px 15px" }}
+                      >
+                        <ShoppingCart
+                          color="action"
+                          style={{ color: "black" }}
+                        />
+                      </Badge>
+                    </Box>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    // onPress={() => navigateAndCloseMenu("UserProfile")}
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      marginLeft: 10,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: 40,
+                        height: 40,
+                        backgroundColor: "gray",
+                        borderRadius: "8%",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography
+                        style={{
+                          fontSize: 16,
+                          color: "white",
+                          padding: 10,
+                        }}
+                      >
+                        AS
+                      </Typography>
+                    </View>
+                    <View style={{ marginLeft: 10 }}>
+                      <Typography variant="subtitle1">
+                        Welcome, {userData.name}
+                      </Typography>
+                      <Typography style={{ fontSize: 12 }}>
+                        {userData.username}
+                      </Typography>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              ) : (
+                <>
+                  <Link href="/" asChild>
+                    <Pressable>
+                      <Button color="inherit">Shop</Button>
+                    </Pressable>
+                  </Link>
+                  <Link href="/About" asChild>
+                    <Pressable color="black">
+                      <Button color="inherit">About Us</Button>
+                    </Pressable>
+                  </Link>
+                  <Link href="/singin" asChild>
+                    <Pressable>
+                      <Button color="inherit">Sign in</Button>
+                    </Pressable>
+                  </Link>
+                  <Link href="/sihnup" asChild>
+                    <Pressable>
+                      <Button color="inherit">Sign Up</Button>
+                    </Pressable>
+                  </Link>
+                </>
+              )}
+            </View>
+          )}
+          {showMenu && width < 600 && (
+            <View
+              style={{
+                position: "absolute",
+                top: 60,
+                right: 10,
+                backgroundColor: "#fff",
+                padding: 10,
+                borderRadius: 5,
+                zIndex: 999,
+              }}
+            >
+              <Link href="/" asChild>
+                <Pressable>
+                  <Button color="inherit">Shop</Button>
+                </Pressable>
+              </Link>
+              <Link href="/About" asChild>
+                <Pressable color="black">
+                  <Button color="inherit">About Us</Button>
+                </Pressable>
+              </Link>
+              {userData ? (
+                <>
+                  <TouchableOpacity
+                  // onPress={() => navigateAndCloseMenu("UserProfile")}
+                  >
+                    <Button color="inherit">Profile</Button>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                  // onPress={() => navigateAndCloseMenu("DateSelectionAndCheckout")}
+                  >
+                    <Button color="inherit">Cart</Button>
+                  </TouchableOpacity>
+                </>
+              ) : (
+                <>
+                  <Link href="/singin" asChild>
+                    <Pressable>
+                      <Button color="inherit">Sign in</Button>
+                    </Pressable>
+                  </Link>
+                  <Link href="/sihnup" asChild>
+                    <Pressable>
+                      <Button color="inherit">Sign Up</Button>
+                    </Pressable>
+                  </Link>
+                </>
+              )}
+            </View>
+          )}
+        </Toolbar>
       {/* <Navbar /> */}
       <View
         style={{
@@ -40,7 +301,7 @@ export default function AboutUs() {
         >
           <View>
             <Image
-              source={require("../../src/Global/images/logo.svg")}
+              source={require("../src/Global/images/logo.svg")}
               style={{ width: 120, height: 60, resizeMode: "contain" }}
             />
           </View>
@@ -354,7 +615,7 @@ export default function AboutUs() {
       </View>
 
       <Image
-        source={require("../../src/Global/images/big-lion.svg")}
+        source={require("../src/Global/images/big-lion.svg")}
         style={{
           minHeight: "99vh",
           minWidth: "100%",
